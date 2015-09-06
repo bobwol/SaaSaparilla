@@ -17,7 +17,7 @@ Building a WordPress-based Software as a Service platform has never been easier!
 
 More information at [SaaSaparilla.com](https://saasaparilla.com).
 
-**Follow this plugin on [GitHub](https://github.com/saasaparilla/SaaSaparilla)**
+**Follow this plugin on [GitHub](https://github.com/SaaSaparilla/SaaSaparilla)**
 
 Would you like to help translate the plugin into more languages? [Join our WP-Translations Community](https://www.transifex.com/projects/p/saasaparilla/).
 

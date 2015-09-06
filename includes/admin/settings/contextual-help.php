@@ -31,8 +31,8 @@ function saasaparilla_settings_contextual_help() {
 		'<p>' . sprintf( __( 'Visit the <a href="%s">documentation</a> on the SaaSaparilla website.', 'saasaparilla' ), esc_url( 'https://docs.saasaparilla.com/' ) ) ) . '</p>' .
 		'<p>' . sprintf(
 					__( '<a href="%s">Post an issue</a> on <a href="%s">GitHub</a>. View <a href="%s">extensions</a>.', 'saasaparilla' ),
-					esc_url( 'https://github.com/saasaparilla/SaaSaparilla/issues' ),
-					esc_url( 'https://github.com/saasaparilla/SaaSaparilla' ),
+					esc_url( 'https://github.com/SaaSaparilla/SaaSaparilla/issues' ),
+					esc_url( 'https://github.com/SaaSaparilla/SaaSaparilla' ),
 					esc_url( 'https://saasaparilla.com/extensions/' )
 				) . '</p>'
 	);
