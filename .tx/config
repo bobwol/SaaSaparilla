@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[saasaparilla.saasaparilla]
+file_filter = languages/saasaparilla-<lang>.po
+source_file = languages/saasaparilla.pot
+source_lang = en_US
+type = PO
