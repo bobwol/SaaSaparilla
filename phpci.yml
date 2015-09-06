@@ -1,0 +1,25 @@
+build_settings:
+    mysql:
+        host: "localhost"
+        user: "root"
+        pass: "root"
+
+setup:
+    mysql:
+        - "DROP DATABASE IF EXISTS saasaparilla_tests;"
+        - "CREATE DATABASE saasaparilla_tests;"
+        - "GRANT ALL PRIVILEGES ON saasaparilla_tests.* TO saasaparilla_tests@'localhost' IDENTIFIED BY 'saasaparilla_tests';"
+
+test:
+    php_unit:
+        config:
+            - "phpunit.xml"
+        directory:
+            - "tests/"
+        run_from: "unit-tests/"
+    php_mess_detector:
+        allow_failures: true
+
+complete:
+    mysql:
+        - "DROP DATABASE IF EXISTS saasaparilla_tests;"
