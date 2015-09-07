@@ -210,7 +210,7 @@ add_action( 'plugins_loaded', 'saasaparilla', 9 );
  * @return      void
  */
 function saasaparilla_install() {
-	require_once 'includes/class.loader.php';
-	require_once 'includes/install.php';
+//	require_once 'includes/class.loader.php';
+//	require_once 'includes/install.php';
 }
 register_activation_hook( '__FILE__', 'saasaparilla_install' );
