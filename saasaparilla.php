@@ -33,9 +33,17 @@ if( ! class_exists( 'SaaSaparilla' ) ) {
 		/**
 		 * @access      private
 		 * @since       1.0.0
-		 * @var         SaaSaparilla $instance The one true Saasaparilla
+		 * @var         SaaSaparilla $instance The one true SaaSaparilla
 		 */
 		private static $instance;
+
+
+		/**
+		 * @access      public
+		 * @since       1.0.0
+		 * @var         object $loader The SaaSaparilla loader object
+		 */
+		public $loader;
 
 
 		/**
@@ -48,8 +56,11 @@ if( ! class_exists( 'SaaSaparilla' ) ) {
 		public static function instance() {
 			if( ! self::$instance ) {
 				self::$instance = new SaaSaparilla();
-				self::$instance->setup_constants();
-				self::$instance->includes();
+
+				// Instantiate the loader
+				require_once 'includes/class.loader.php';
+				self::$instance->loader = new SaaSaparilla_Loader( __FILE__ );
+				
 				self::$instance->hooks();
 			}
 
@@ -83,62 +94,6 @@ if( ! class_exists( 'SaaSaparilla' ) ) {
 		public function __wakeup() {
 			// Unserializing instances of the class is forbidden
 			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'saasaparilla' ), '1.6' );
-		}
-
-
-		/**
-		 * Setup plugin constants
-		 *
-		 * @access      private
-		 * @since       1.0.0
-		 * @return      void
-		 */
-		private function setup_constants() {
-			// Plugin version
-			define( 'SAASAPARILLA_VER', '1.0.0' );
-
-			// Plugin path
-			define( 'SAASAPARILLA_DIR', plugin_dir_path( __FILE__ ) );
-
-			// Plugin URL
-			define( 'SAASAPARILLA_URL', plugin_dir_url( __FILE__ ) );
-		}
-
-
-		/**
-		 * Include required files
-		 *
-		 * @access      private
-		 * @since       1.0.0
-		 * @global      array $saasaparilla_options The SaaSaparilla options array
-		 * @return      void
-		 */
-		private function includes() {
-			global $saasaparilla_options;
-
-			require_once SAASAPARILLA_DIR . 'includes/admin/settings/register.php';
-			$saasaparilla_options = saasaparilla_get_settings();
-
-			require_once SAASAPARILLA_DIR . 'includes/actions.php';
-			require_once SAASAPARILLA_DIR . 'includes/class.db.php';
-			//require_once SAASAPARILLA_DIR . 'includes/class.html-elements.php';
-			//require_once SAASAPARILLA_DIR . 'includes/class.logging.php';
-			//require_once SAASAPARILLA_DIR . 'includes/class.roles.php';
-			require_once SAASAPARILLA_DIR . 'includes/scripts.php';
-			require_once SAASAPARILLA_DIR . 'includes/functions.php';
-
-			if( is_admin() ) {
-				require_once SAASAPARILLA_DIR . 'includes/admin/footer.php';
-				//require_once SAASAPARILLA_DIR . 'includes/admin/class.notices.php';
-				require_once SAASAPARILLA_DIR . 'includes/admin/pages.php';
-				require_once SAASAPARILLA_DIR . 'includes/admin/settings/display.php';
-				require_once SAASAPARILLA_DIR . 'includes/admin/settings/contextual-help.php';
-				//require_once SAASAPARILLA_DIR . 'includes/admin/tools.php';
-				//require_once SAASAPARILLA_DIR . 'includes/admin/welcome.php';
-			}
-
-			//require_once SAASAPARILLA_DIR . 'includes/admin/upgrades/upgrade-functions.php';
-			//require_once SAASAPARILLA_DIR . 'includes/install.php';
 		}
 
 
@@ -210,7 +165,8 @@ add_action( 'plugins_loaded', 'saasaparilla', 9 );
  * @return      void
  */
 function saasaparilla_install() {
-//	require_once 'includes/class.loader.php';
-//	require_once 'includes/install.php';
+	// Instantiate the loader
+	require_once 'includes/class.loader.php';
+	$loader = new SaaSaparilla_Loader( __FILE__ );
 }
 register_activation_hook( '__FILE__', 'saasaparilla_install' );
