@@ -8,7 +8,7 @@ class Tests_Upgrades extends WP_UnitTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		require_once SAASAPARILLA_PLUGIN_DIR . 'includes/admin/upgrades/upgrade-functions.php';
+		require_once SAASAPARILLA_DIR . 'includes/admin/upgrades/upgrade-functions.php';
 	}
 
 	public function tearDown() {

@@ -29,7 +29,7 @@ class Tests_Scripts extends WP_UnitTestCase {
 		$pagenow = 'dashboard';
 
 		if ( ! function_exists( 'saasaparilla_is_admin_page' ) ) {
-			include SAASAPARILLA_PLUGIN_DIR . 'includes/admin/pages.php';
+			include SAASAPARILLA_DIR . 'includes/admin/pages.php';
 		}
 
 		// Assert
@@ -48,7 +48,7 @@ class Tests_Scripts extends WP_UnitTestCase {
 	public function test_load_admin_scripts() {
 
 		if ( ! function_exists( 'saasaparilla_is_admin_page' ) ) {
-			include SAASAPARILLA_PLUGIN_DIR . 'includes/admin/pages.php';
+			include SAASAPARILLA_DIR . 'includes/admin/pages.php';
 		}
 
 		saasaparilla_load_admin_scripts( 'settings.php' );
