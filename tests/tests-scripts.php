@@ -40,7 +40,6 @@ class Tests_Scripts extends WP_UnitTestCase {
 		$this->assertTrue( wp_script_is( 'colorbox', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'jquery-ui-datepicker', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'jquery-ui-dialog', 'enqueued' ) );
-		$this->assertTrue( wp_script_is( 'jquery-flot', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'media-upload', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'thickbox', 'enqueued' ) );
 
