@@ -29,7 +29,6 @@ class Tests_Scripts extends WP_UnitTestCase {
 
 		saasaparilla_load_admin_scripts( 'settings.php' );
 
-		$this->assertTrue( wp_style_is( 'jquery-chosen', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'wp-color-picker', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'colorbox', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'jquery-ui-css', 'enqueued' ) );
@@ -37,7 +36,6 @@ class Tests_Scripts extends WP_UnitTestCase {
 		$this->assertTrue( wp_style_is( 'saasaparilla', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'saasaparilla-font', 'enqueued' ) );
 
-		$this->assertTrue( wp_script_is( 'jquery-chosen', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'saasaparilla', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'colorbox', 'enqueued' ) );
 		$this->assertTrue( wp_script_is( 'jquery-ui-datepicker', 'enqueued' ) );
