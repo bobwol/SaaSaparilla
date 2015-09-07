@@ -53,10 +53,6 @@ function saasaparilla_is_admin_page( $hook = '' ) {
 
 	if( $pagenow == 'index.php' ) {
 		$found = true;
-
-		if( $page === 'saasaparilla-upgrades' ) {
-			$found = false;
-		}
 	} elseif( in_array( $pagenow, $admin_pages ) || in_array( $hook, $admin_pages ) ) {
 		$found = true;
 	}
