@@ -23,17 +23,20 @@ if( ! defined( 'ABSPATH' ) ) {
  * @return      void
  */
 function saasaparilla_load_admin_scripts( $hook ) {
+	// Use minified libraries if SCRIPT_DEBUG is turned off
+	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+	$js_dir     = SAASAPARILLA_URL . 'assets/js/';
+	$css_dir    = SAASAPARILLA_URL . 'assets/css/';
+
+	// Font must be loaded globally
+	wp_enqueue_style( 'saasaparilla-font', $css_dir . 'font' . $suffix . '.css', SAASAPARILLA_VER );
+	
 	if( ! apply_filters( 'saasaparilla_load_admin_scripts', saasaparilla_is_admin_page( $hook ), $hook ) ) {
 		return;
 	}
 
 	global $post, $wp_version;
-
-	$js_dir     = SAASAPARILLA_URL . 'assets/js/';
-	$css_dir    = SAASAPARILLA_URL . 'assets/css/';
-
-	// Use minified libraries if SCRIPT_DEBUG is turned off
-	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 	wp_enqueue_script( 'saasaparilla', $js_dir . 'admin' . $suffix . '.js', array( 'jquery' ), SAASAPARILLA_VER, false );
 	wp_localize_script( 'saasaparilla', 'saasaparilla_vars', array(
@@ -60,6 +63,5 @@ function saasaparilla_load_admin_scripts( $hook ) {
 	wp_enqueue_style( 'thickbox' );
 
 	wp_enqueue_style( 'saasaparilla', $css_dir . 'saasaparilla' . $suffix . '.css', SAASAPARILLA_VER );
-	wp_enqueue_style( 'saasaparilla-font', $css_dir . 'font' . $suffix . '.css', SAASAPARILLA_VER );
 }
 add_action( 'admin_enqueue_scripts', 'saasaparilla_load_admin_scripts', 100 );
