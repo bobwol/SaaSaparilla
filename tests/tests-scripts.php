@@ -17,30 +17,6 @@ class Tests_Scripts extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that the saasaparilla_load_admin_scripts() function will bail when not an admin page.
-	 *
-	 * @since 2.3.6
-	 */
-	public function test_load_admin_scripts_bail() {
-
-		// Prepare test
-		global $pagenow;
-		$origin_pagenow = $pagenow;
-		$pagenow = 'dashboard';
-
-		if ( ! function_exists( 'saasaparilla_is_admin_page' ) ) {
-			include SAASAPARILLA_DIR . 'includes/admin/pages.php';
-		}
-
-		// Assert
-		$this->assertNull( saasaparilla_load_admin_scripts( 'dashboard' ) );
-
-		// Reset to origin
-		$pagenow = $origin_pagenow;
-
-	}
-
-	/**
 	 * Test that the saasaparilla_load_admin_scripts() function will enqueue the proper styles.
 	 *
 	 * @since 1.0.0
