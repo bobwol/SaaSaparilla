@@ -20,7 +20,7 @@ if( ! defined( 'ABSPATH' ) ) {
  * @return      void
  */
 function saasaparilla_add_setup_pages() {
-	add_dashboard_page( __( 'SaaSaparilla Setup', 'saasaparilla' ), __( 'SaaSaparilla Setup', 'saasaparilla' ), 'manage_options', 'saasaparilla-setup', 'saasaparilla_render_setup_page' );
+	add_dashboard_page( __( 'SaaSaparilla Setup', 'saasaparilla' ), __( 'SaaSaparilla Setup', 'saasaparilla' ), 'manage_options', 'saasaparilla_setup', 'saasaparilla_render_setup_page' );
 }
 add_action( 'admin_menu', 'saasaparilla_add_setup_pages' );
 
@@ -63,7 +63,7 @@ define( 'WP_ALLOW_MULTISITE', true );</textarea>
 		<?php
 		if( is_writable( ABSPATH . 'wp-config.php' ) ) {
 			echo '<p><span class="dashicons dashicons-yes" style="color: #008000"></span> ' . __( 'The wp-config.php file is writable. Would you like us to do it for you?', 'saasaparilla' ) . '</p>';
-			echo '<a class="button" style="margin-right: 10px" href="' . add_query_arg( 'saasaparilla-action', 'enable_multisite' ) . '">' . __( 'Enable Multisite', 'saasaparilla' ) . '</a>';
+			echo '<a class="button" style="margin-right: 10px" href="' . add_query_arg( 'saasaparilla_action', 'enable_multisite' ) . '">' . __( 'Enable Multisite', 'saasaparilla' ) . '</a>';
 			echo '<a class="button secondary" href="' . add_query_arg( 'step', '2' ) . '">' . __( 'I Already Did It', 'saasaparilla' ) . '</a>';
 		} else {
 			echo '<p><span class="dashicons dashicons-no" style="color: #ff0000"></span> ' . __( 'The wp-config.php file is not writable. Please edit the below file and add the code yourself.', 'saasaparilla' ) . '</p>';
@@ -95,7 +95,7 @@ function saasaparilla_setup_step_2() {
 		echo '<p>' . __( 'Great! It looks like Multisite is enabled properly. Unfortunately, we can\'t do the next step for you because WordPress requires that all plugins be disabled for it.', 'saasaparilla' ) . '</p>';
 		echo '<p>' . __( 'When you click the "I\'m Ready!" button, SaaSaparilla will be disabled and you will be redirected to the Network Setup page to finish setting up your install as a WordPress Network.', 'saasaparilla' ) . '</p>';
 		echo '<p>' . __( 'Once that is done, go to the network admin site and network activate SaaSaparilla to continue.', 'saasaparilla' ) . '</p>';
-		echo '<a class="button" href="' . add_query_arg( 'saasaparilla-action', 'configure_multisite' ) . '">' . __( 'I\'m Ready!', 'saasaparilla' ) . '</a>';
+		echo '<a class="button" href="' . add_query_arg( 'saasaparilla_action', 'configure_multisite' ) . '">' . __( 'I\'m Ready!', 'saasaparilla' ) . '</a>';
 	}
 }
 add_action( 'saasaparilla_setup_step_2', 'saasaparilla_setup_step_2' );
@@ -112,7 +112,7 @@ function saasaparilla_enable_multisite() {
 	$file_contents = str_replace( "/* That's all, stop editing! Happy blogging. */", "/* Multisite */\ndefine( 'WP_ALLOW_MULTISITE', true );\n\n/* That's all, stop editing! Happy blogging. */", $file_contents );
 	file_put_contents( ABSPATH . 'wp-config.php', $file_contents );
 
-	wp_safe_redirect( add_query_arg( array( 'step' => '2', 'saasaparilla-action' => false ) ) );
+	wp_safe_redirect( add_query_arg( array( 'step' => '2', 'saasaparilla_action' => false ) ) );
 	exit;
 }
 add_action( 'saasaparilla_enable_multisite', 'saasaparilla_enable_multisite' );

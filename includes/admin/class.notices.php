@@ -48,8 +48,8 @@ class SaaSaparilla_Notices {
 		);
 
 		// General messages
-		if( isset( $_GET['saasaparilla-message'] ) ) {
-			switch( $_GET['saasaparilla-message'] ) {
+		if( isset( $_GET['saasaparilla_message'] ) ) {
+			switch( $_GET['saasaparilla_message'] ) {
 				case 'test_message':
 					$notices['error']['test-message'] = __( 'Test notice.', 'saasaparilla' );
 					break;
@@ -80,9 +80,9 @@ class SaaSaparilla_Notices {
 	 * @return      void
 	 */
 	function dismiss_notices() {
-		if( isset( $_GET['saasaparilla-notice'] ) ) {
-			update_user_meta( get_current_user_id(), '_saasaparilla_' . $_GET['saasaparilla-notice'] . '_dismissed', 1 );
-			wp_redirect( remove_query_arg( array( 'saasaparilla-action', 'saasaparilla-notice' ) ) );
+		if( isset( $_GET['saasaparilla_notice'] ) ) {
+			update_user_meta( get_current_user_id(), '_saasaparilla_' . $_GET['saasaparilla_notice'] . '_dismissed', 1 );
+			wp_redirect( remove_query_arg( array( 'saasaparilla_action', 'saasaparilla_notice' ) ) );
 			exit;
 		}
 	}

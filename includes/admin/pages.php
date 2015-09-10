@@ -25,9 +25,9 @@ if( ! defined( 'ABSPATH' ) ) {
 function saasaparilla_add_menu_items() {
 	global $saasaparilla_settings_page, $saasaparilla_tools_page, $saasaparilla_upgrades_page;
 
-	add_menu_page( __( 'SaaSaparilla Settings', 'saasaparilla' ), __( 'SaaSaparilla', 'saasaparilla' ), 'manage_options', 'saasaparilla-settings', 'saasaparilla_render_settings_page' );
-	$saasaparilla_settings_page     = add_submenu_page( 'saasaparilla-settings', __( 'SaaSaparilla Settings', 'saasaparilla' ), __( 'Settings', 'saasaparilla' ), 'manage_options', 'saasaparilla-settings', 'saasaparilla_render_settings_page' );
-	$saasaparilla_tools_page        = add_submenu_page( 'saasaparilla-settings', __( 'SaaSaparilla Info and Tools', 'saasaparilla' ), __( 'Tools', 'saasaparilla' ), 'install_plugins', 'saasaparilla-tools', 'saasaparilla_tools_page' );
+	add_menu_page( __( 'SaaSaparilla Settings', 'saasaparilla' ), __( 'SaaSaparilla', 'saasaparilla' ), 'manage_options', 'saasaparilla_settings', 'saasaparilla_render_settings_page' );
+	$saasaparilla_settings_page     = add_submenu_page( 'saasaparilla_settings', __( 'SaaSaparilla Settings', 'saasaparilla' ), __( 'Settings', 'saasaparilla' ), 'manage_options', 'saasaparilla-settings', 'saasaparilla_render_settings_page' );
+	$saasaparilla_tools_page        = add_submenu_page( 'saasaparilla_settings', __( 'SaaSaparilla Info and Tools', 'saasaparilla' ), __( 'Tools', 'saasaparilla' ), 'install_plugins', 'saasaparilla-tools', 'saasaparilla_tools_page' );
 	$saasaparilla_upgrades_page     = add_submenu_page( null, __( 'SaaSaparilla Upgrades', 'saasaparilla' ), __( 'SaaSaparilla Upgrades', 'saasaparilla' ), 'manage_options', 'saasaparilla-upgrades', 'saasaparilla_upgrades_screen' );
 }
 add_action( 'admin_menu', 'saasaparilla_add_menu_items' );

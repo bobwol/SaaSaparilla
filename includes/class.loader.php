@@ -136,7 +136,7 @@ class SaaSaparilla_Loader {
 	 */
 	public function display_multisite_error() {
 		$html  = '<div class="error">';
-		$html .= '<p>' . sprintf( __( 'SaaSaparilla is a WordPress Multisite plugin, but your install is not configured for Multisite. Click <a href="%s">here</a> to set up Multisite now.', 'saasaparilla' ), add_query_arg( array( 'page' => 'saasaparilla-setup' ), admin_url() ) ) . '</p>';
+		$html .= '<p>' . sprintf( __( 'SaaSaparilla is a WordPress Multisite plugin, but your install is not configured for Multisite. Click <a href="%s">here</a> to set up Multisite now.', 'saasaparilla' ), add_query_arg( array( 'page' => 'saasaparilla_setup' ), admin_url() ) ) . '</p>';
 		$html .= '</div>';
 
 		echo $html;
