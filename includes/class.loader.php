@@ -2,6 +2,12 @@
 /**
  * Loader class
  *
+ * This class bootstraps the plugin. Given we
+ * are building in a class-based architecture,
+ * and loading on plugins_loaded, we need to
+ * separate this from the main class to allow
+ * access from the activation hook.
+ *
  * @package     SaaSaparilla\Loader
  * @since       1.0.0
  */
