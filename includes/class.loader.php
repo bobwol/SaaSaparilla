@@ -54,12 +54,13 @@ class SaaSaparilla_Loader {
 
 		// Ensure we're running WP Multisite
 		if( ! is_multisite() ) {
-			$html  = '<div class="error">';
-			$html .= '<p>' . sprintf( __( 'SaaSaparilla is a WordPress Multisite plugin, but your install is not configured for Multisite. Click <a href="%s">here</a> to set up Multisite now.', 'saasaparilla' ), '#' ) . '</p>';
-			$html .= '</div>';
+			// Load the setup page
+			require_once SAASAPARILLA_DIR . 'includes/actions.php';
+			require_once SAASAPARILLA_DIR . 'includes/admin/setup/pages.php';
 
-			echo $html;
-
+			// Display the multisite error
+			add_action( 'admin_notices', array( $this, 'display_multisite_error' ) );
+			
 			return;
 		}
 
@@ -83,6 +84,9 @@ class SaaSaparilla_Loader {
 
 		// Plugin URL
 		define( 'SAASAPARILLA_URL', plugin_dir_url( $this->plugin_file ) );
+
+		// Plugin file
+		define( 'SAASAPARILLA_FILE', $this->plugin_file );
 	}
 
 
@@ -120,5 +124,21 @@ class SaaSaparilla_Loader {
 
 		//require_once SAASAPARILLA_DIR . 'includes/admin/upgrades/upgrade-functions.php';
 		//require_once SAASAPARILLA_DIR . 'includes/install.php';
+	}
+
+
+	/**
+	 * Display error if Multisite isn't active
+	 *
+	 * @access      public
+	 * @since       1.0.0
+	 * @return      void
+	 */
+	public function display_multisite_error() {
+		$html  = '<div class="error">';
+		$html .= '<p>' . sprintf( __( 'SaaSaparilla is a WordPress Multisite plugin, but your install is not configured for Multisite. Click <a href="%s">here</a> to set up Multisite now.', 'saasaparilla' ), add_query_arg( array( 'page' => 'saasaparilla-setup' ), admin_url() ) ) . '</p>';
+		$html .= '</div>';
+
+		echo $html;
 	}
 }
