@@ -48,10 +48,21 @@ class SaaSaparilla_Loader {
 		if( ! $plugin_file ) {
 			return;
 		}
-		
-		$this->plugin_file = $plugin_file;
 
+		$this->plugin_file = $plugin_file;
 		$this->setup_constants();
+
+		// Ensure we're running WP Multisite
+		if( ! is_multisite() ) {
+			$html  = '<div class="error">';
+			$html .= '<p>' . sprintf( __( 'SaaSaparilla is a WordPress Multisite plugin, but your install is not configured for Multisite. Click <a href="%s">here</a> to set up Multisite now.', 'saasaparilla' ), '#' ) . '</p>';
+			$html .= '</div>';
+
+			echo $html;
+
+			return;
+		}
+
 		$this->includes();
 	}
 
@@ -99,7 +110,7 @@ class SaaSaparilla_Loader {
 
 		if( is_admin() ) {
 			require_once SAASAPARILLA_DIR . 'includes/admin/footer.php';
-			//require_once SAASAPARILLA_DIR . 'includes/admin/class.notices.php';
+			require_once SAASAPARILLA_DIR . 'includes/admin/class.notices.php';
 			require_once SAASAPARILLA_DIR . 'includes/admin/pages.php';
 			require_once SAASAPARILLA_DIR . 'includes/admin/settings/display.php';
 			require_once SAASAPARILLA_DIR . 'includes/admin/settings/contextual-help.php';
